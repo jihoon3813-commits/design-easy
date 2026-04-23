@@ -1,19 +1,28 @@
 "use client";
 
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo, useEffect, useState } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
+
+  // 컴포넌트가 브라우저에 마운트된 후에만 렌더링을 제어하기 위함 (Hydration 에러 방지)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const convex = useMemo(() => {
     if (!convexUrl) {
-      console.warn("⚠️ NEXT_PUBLIC_CONVEX_URL이 설정되지 않았습니다. 'npx convex dev'를 실행하여 서버를 연결해주세요.");
-      // 더미 클라이언트를 반환하거나 null 처리를 위해 에러 방지
       return null;
     }
     return new ConvexReactClient(convexUrl);
   }, [convexUrl]);
+
+  // 서버 사이드 렌더링 중이거나 아직 마운트 전이라면 아무것도 렌더링하지 않거나 기본 구조 유지
+  if (!mounted) {
+    return <div className="min-h-screen bg-black" />;
+  }
 
   if (!convex) {
     return (
