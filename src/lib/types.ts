@@ -81,6 +81,7 @@ export interface PageData {
   };
   theme: BrandTheme;
   sections: SectionData[];
+  globalStyles?: any;
 }
 
 export const DEFAULT_THEME: BrandTheme = {
