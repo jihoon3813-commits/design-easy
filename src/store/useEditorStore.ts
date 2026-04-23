@@ -38,6 +38,16 @@ interface EditorState {
 }
 
 const DEFAULT_PAGE: PageData = {
+  id: 'new-page',
+  title: '새 상세페이지',
+  metadata: {},
+  theme: {
+    primaryColor: '#2563eb',
+    secondaryColor: '#64748b',
+    fontFamily: 'Inter',
+    borderRadius: 'md',
+    darkMode: false,
+  },
   sections: [],
   globalStyles: {}
 };
