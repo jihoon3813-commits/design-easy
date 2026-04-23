@@ -21,8 +21,15 @@ export interface ElementStyles {
   textAlign?: 'left' | 'center' | 'right';
   borderRadius?: string;
   border?: string;
+  borderTop?: string;
+  borderBottom?: string;
+  borderLeft?: string;
+  borderRight?: string;
   width?: string;
   height?: string;
+  display?: string;
+  alignItems?: string;
+  justifyContent?: string;
 }
 
 export interface BaseElement {
