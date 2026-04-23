@@ -30,6 +30,7 @@ export interface ElementStyles {
   display?: string;
   alignItems?: string;
   justifyContent?: string;
+  [key: string]: any; // 모든 추가 스타일 속성 허용 (빌드 에러 방지)
 }
 
 export interface BaseElement {
