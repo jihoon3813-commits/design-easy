@@ -135,4 +135,43 @@ export const benefitsTemplates: TemplateVariant[] = [
       { id: id(), type: 'text', content: '10만 고객이 사랑한 제품', styles: { fontSize: '16px', fontWeight: 'bold', textAlign: 'center', margin: '8px 0' } },
     ],
   },
+  {
+    name: '카드 박스 리스트',
+    preview: '🎴',
+    bg: { type: 'color', value: '#f8fafc' },
+    elements: [
+      { id: id(), type: 'text', content: '믿을 수 있는 서비스', styles: { fontSize: '22px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 24px' } },
+      { id: id(), type: 'text', content: '🔒 보안 시스템\n금융권 수준의 강력한 보안 정책을 적용하여 데이터를 안전하게 보호합니다.', styles: { fontSize: '14px', padding: '20px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', margin: '0 0 12px' } },
+      { id: id(), type: 'text', content: '🚀 초고속 엔진\n최적화된 아키텍처로 끊김 없는 빠른 작업 속도를 보장합니다.', styles: { fontSize: '14px', padding: '20px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', margin: '0 0 12px' } },
+      { id: id(), type: 'text', content: '🛠️ 24/7 유지보수\n전문 엔지니어가 실시간으로 시스템을 모니터링하고 지원합니다.', styles: { fontSize: '14px', padding: '20px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' } },
+    ],
+  },
+  {
+    name: '스텝 프로세스',
+    preview: '🛤️',
+    bg: { type: 'color', value: '#ffffff' },
+    elements: [
+      { id: id(), type: 'text', content: '이용 프로세스', styles: { fontSize: '20px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 32px' } },
+      { id: id(), type: 'text', content: '01. 계정 생성', styles: { fontSize: '16px', fontWeight: 'bold', color: '#2563eb', textAlign: 'center' } },
+      { id: id(), type: 'text', content: '간단한 가입만으로 즉시 시작하세요.', styles: { fontSize: '13px', textAlign: 'center', color: '#64748b', margin: '8px 0 24px' } },
+      { id: id(), type: 'text', content: '02. 콘텐츠 입력', styles: { fontSize: '16px', fontWeight: 'bold', color: '#2563eb', textAlign: 'center' } },
+      { id: id(), type: 'text', content: 'AI 가이드에 따라 상품 정보를 입력합니다.', styles: { fontSize: '13px', textAlign: 'center', color: '#64748b', margin: '8px 0 24px' } },
+      { id: id(), type: 'text', content: '03. 페이지 완성', styles: { fontSize: '16px', fontWeight: 'bold', color: '#2563eb', textAlign: 'center' } },
+      { id: id(), type: 'text', content: '단 몇 분 만에 결과물을 확인하세요.', styles: { fontSize: '13px', textAlign: 'center', color: '#64748b' } },
+    ],
+  },
+  {
+    name: '갤러리 베네핏',
+    preview: '🖼️',
+    bg: { type: 'color', value: '#ffffff' },
+    elements: [
+      { id: id(), type: 'text', content: '다양한 활용 사례', styles: { fontSize: '22px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 24px' } },
+      { id: id(), type: 'image', content: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80', styles: { borderRadius: '16px', margin: '0 0 16px' } },
+      { id: id(), type: 'text', content: 'E-커머스 최적화 디자인', styles: { fontSize: '16px', fontWeight: 'bold', textAlign: 'center' } },
+      { id: id(), type: 'text', content: '구매 전환율을 높이는 비주얼 전략을 제안합니다.', styles: { fontSize: '13px', textAlign: 'center', color: '#64748b', margin: '8px 0 32px' } },
+      { id: id(), type: 'image', content: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', styles: { borderRadius: '16px', margin: '0 0 16px' } },
+      { id: id(), type: 'text', content: '직관적인 데이터 분석', styles: { fontSize: '16px', fontWeight: 'bold', textAlign: 'center' } },
+      { id: id(), type: 'text', content: '복잡한 수치를 한눈에 보여주는 인포그래픽 시스템.', styles: { fontSize: '13px', textAlign: 'center', color: '#64748b' } },
+    ],
+  },
 ];
