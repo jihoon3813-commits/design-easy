@@ -4,55 +4,45 @@ import React from 'react';
 import { Sparkles, X, ChevronRight, Loader2 } from 'lucide-react';
 import { useEditorStore } from '@/store/useEditorStore';
 
+import { generatePageAction } from '@/app/actions/generate';
+
 export default function GeneratorModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
-  const [step, setStep] = React.useState(1);
   const [loading, setLoading] = React.useState(false);
+  const [productName, setProductName] = React.useState('');
+  const [features, setFeatures] = React.useState('');
   const { setPageData } = useEditorStore();
 
   if (!isOpen) return null;
 
   const handleGenerate = async () => {
+    if (!productName) {
+      alert('상품명을 입력해주세요.');
+      return;
+    }
+
     setLoading(true);
-    // Simulate AI generation
-    setTimeout(() => {
-      const mockData = {
-        id: 'generated-1',
-        title: '신규 상품 상세페이지',
-        theme: {
-          primaryColor: '#2563eb',
-          secondaryColor: '#64748b',
-          fontFamily: 'Inter',
-          borderRadius: 'md',
-          darkMode: false,
-        },
-        sections: [
-          {
-            id: 's1',
-            type: 'hero',
-            props: {
-              title: '혁신적인 스마트 가습기',
-              description: '당신의 건강을 위한 최고의 선택',
-              ctaText: '지금 바로 구매하기'
-            }
-          },
-          {
-            id: 's2',
-            type: 'benefits',
-            props: {
-              title: '왜 우리 제품인가요?',
-              items: [
-                { title: '저소음 설계', description: '밤낮 가리지 않고 조용하게' },
-                { title: '대용량 탱크', description: '한 번의 급수로 하루 종일' }
-              ]
-            }
-          }
-        ]
-      };
-      // @ts-ignore
-      setPageData(mockData);
+    try {
+      const result = await generatePageAction({
+        productName,
+        category: '일반 상품',
+        features: features.split(',').map(f => f.trim()).filter(Boolean),
+        targetAudience: '일반 고객',
+        tone: '전문적이고 설득력 있는',
+        requiredSections: ['hero', 'benefits', 'cta']
+      });
+
+      if (result.success && result.data) {
+        setPageData(result.data as any);
+        onClose();
+      } else {
+        alert('생성 중 오류가 발생했습니다.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('AI 엔진 연결에 실패했습니다.');
+    } finally {
       setLoading(false);
-      onClose();
-    }, 2000);
+    }
   };
 
   return (
@@ -82,6 +72,8 @@ export default function GeneratorModal({ isOpen, onClose }: { isOpen: boolean, o
                 <label className="text-sm font-medium text-neutral-300">상품명을 입력해주세요</label>
                 <input 
                   type="text" 
+                  value={productName}
+                  onChange={(e) => setProductName(e.target.value)}
                   placeholder="예: 초경량 무선 청소기"
                   className="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -90,6 +82,8 @@ export default function GeneratorModal({ isOpen, onClose }: { isOpen: boolean, o
               <div className="space-y-2">
                 <label className="text-sm font-medium text-neutral-300">핵심 특징 (쉼표로 구분)</label>
                 <textarea 
+                  value={features}
+                  onChange={(e) => setFeatures(e.target.value)}
                   placeholder="예: 강력한 흡입력, 1.2kg 초경량, HEPA 필터"
                   className="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"
                 />

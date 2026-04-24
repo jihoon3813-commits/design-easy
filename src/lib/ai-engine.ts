@@ -23,15 +23,28 @@ export function generateSystemPrompt() {
     [JSON 스키마]
     {
       "title": "페이지 제목",
+      "theme": {
+        "primaryColor": "#색상코드",
+        "fontFamily": "Inter | Outfit | Roboto"
+      },
       "sections": [
         {
           "id": "고유ID",
-          "type": "hero | benefits | feature-cards | faq | comparison-table | sticky-cta",
-          "props": {
-            "title": "섹션 제목",
-            "description": "상세 설명",
-            "items": [ ... 섹션 타입에 따른 아이템 배열 ... ]
-          }
+          "type": "hero | benefits | feature-cards | faq | comparison-table | cta",
+          "background": { "type": "color", "value": "#ffffff" },
+          "elements": [
+            {
+              "id": "엘리먼트ID",
+              "type": "text | image | button | icon | spacer",
+              "content": "내용 (텍스트 또는 이미지URL)",
+              "styles": {
+                "fontSize": "32px",
+                "color": "#000000",
+                "textAlign": "center",
+                "fontWeight": "bold"
+              }
+            }
+          ]
         }
       ]
     }
