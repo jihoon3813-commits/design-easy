@@ -50,7 +50,7 @@ export default function Canvas() {
         {/* Preview Container: 캡처 대상 */}
         <div 
           id="canvas-container"
-          className={`bg-white shadow-2xl transition-all duration-300 origin-top overflow-hidden flex flex-col ${
+          className={`bg-white text-neutral-900 shadow-2xl transition-all duration-300 origin-top overflow-hidden flex flex-col ${
             previewMode === 'mobile' ? 'w-[375px]' : 'w-full max-w-[1200px]'
           }`}
           style={{ minHeight: previewMode === 'mobile' ? '667px' : '800px' }}
