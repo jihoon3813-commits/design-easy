@@ -55,7 +55,7 @@ export default function Sidebar() {
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
-    if (active.id !== over?.id) {
+    if (active.id !== over?.id && pageData?.sections) {
       const oldIdx = pageData.sections.findIndex(s => s.id === active.id);
       const newIdx = pageData.sections.findIndex(s => s.id === over.id);
       reorderSections(oldIdx, newIdx);
@@ -106,12 +106,12 @@ export default function Sidebar() {
       <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
         {activeTab === 'layers' ? (
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-            <SortableContext items={pageData.sections.map(s => s.id)} strategy={verticalListSortingStrategy}>
+            <SortableContext items={(pageData?.sections || []).map(s => s.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-2">
-                {pageData.sections.map((s, i) => (
+                {pageData?.sections?.map((s, i) => (
                   <SortableLayer key={s.id} section={s} index={i} isSelected={selectedSectionId === s.id} onSelect={setSelectedSectionId} onRemove={removeSection} />
                 ))}
-                {pageData.sections.length === 0 && <p className="text-xs text-neutral-600 text-center py-12">추가된 섹션이 없습니다.</p>}
+                {(!pageData?.sections || pageData.sections.length === 0) && <p className="text-xs text-neutral-600 text-center py-12">추가된 섹션이 없습니다.</p>}
               </div>
             </SortableContext>
           </DndContext>

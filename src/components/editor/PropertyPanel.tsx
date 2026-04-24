@@ -21,10 +21,10 @@ export default function PropertyPanel() {
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const selectedSection = pageData.sections.find(s => s.id === selectedSectionId);
-  const selectedElement = selectedSection?.elements.find(el => el.id === selectedElementId);
+  const selectedSection = pageData?.sections?.find(s => s.id === selectedSectionId);
+  const selectedElement = selectedSection?.elements?.find(el => el.id === selectedElementId);
 
-  if (!selectedSectionId || !selectedSection) {
+  if (!pageData?.sections || !selectedSectionId || !selectedSection) {
     return (
       <aside className="w-80 border-l border-neutral-800 bg-neutral-950 p-6 flex flex-col items-center justify-center text-center">
         <div className="w-12 h-12 bg-neutral-900 rounded-full flex items-center justify-center mb-4">

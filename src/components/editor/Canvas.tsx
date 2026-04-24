@@ -37,7 +37,7 @@ export default function Canvas() {
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
-    if (active.id !== over?.id) {
+    if (active.id !== over?.id && pageData?.sections) {
       const oldIndex = pageData.sections.findIndex((s) => s.id === active.id);
       const newIndex = pageData.sections.findIndex((s) => s.id === over.id);
       reorderSections(oldIndex, newIndex);
@@ -62,10 +62,10 @@ export default function Canvas() {
               onDragEnd={handleDragEnd}
             >
               <SortableContext 
-                items={pageData.sections.map(s => s.id)}
+                items={(pageData?.sections || []).map(s => s.id)}
                 strategy={verticalListSortingStrategy}
               >
-                {pageData.sections.map((section) => (
+                {pageData?.sections?.map((section) => (
                   <SortableItem key={section.id} id={section.id}>
                     <SectionRenderer section={section} />
                   </SortableItem>
@@ -73,7 +73,7 @@ export default function Canvas() {
               </SortableContext>
             </DndContext>
             
-            {pageData.sections.length === 0 && (
+            {(!pageData?.sections || pageData.sections.length === 0) && (
               <div className="flex-1 flex flex-col items-center justify-center p-12 text-center">
                 <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6 shadow-inner">
                   <Sparkles className="w-10 h-10 text-blue-500" />
