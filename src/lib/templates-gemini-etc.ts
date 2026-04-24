@@ -93,6 +93,23 @@ export const geminiComparisonTemplates: TemplateVariant[] = [
     { id: id(), type: 'text', content: '✅ 4K 고해상도 동영상 스트리밍', styles: { fontSize: '14px', padding: '10px', color: '#2563eb' } },
     { id: id(), type: 'text', content: '✅ SEO 최적화 메타데이터 자동생성', styles: { fontSize: '14px', padding: '10px', color: '#2563eb' } },
   ]},
+  { name: 'Relume 스타일 요금제', preview: '📱', bg: { type: 'color', value: '#ffffff' }, styles: { layout: 'grid', maxWidth: '1200px' }, elements: [
+    { 
+      id: id(), type: 'text', 
+      content: 'Starter\n$18 USD\n/month for one person\n\nUnlock extended functionality and turn those ideas into small websites.\n\n✓ 1 project\n✓ 5 pages\n✓ Share - Commenting\n✓ Export - Figma, Webflow & React\n✓ 1,000+ Webflow components', 
+      styles: { flex: '1', padding: '32px', border: '1px solid #e5e7eb', borderRadius: '24px', backgroundColor: '#f9fafb', fontSize: '14px', lineHeight: '1.6', textAlign: 'left' } 
+    },
+    { 
+      id: id(), type: 'text', 
+      content: 'Professional\n$40 USD\n/month for one person\n\nComplete freedom with unlimited access to build websites of any size.\n\n✓ Unlimited Projects\n✓ Unlimited Pages\n✓ Share - Commenting\n✓ Export - Figma, Webflow & React\n✓ 1,000+ Webflow components', 
+      styles: { flex: '1', padding: '32px', border: '2px solid #6366f1', borderRadius: '24px', backgroundColor: '#ffffff', fontSize: '14px', lineHeight: '1.6', boxShadow: '0 20px 25px -5px rgba(99, 102, 241, 0.1)', textAlign: 'left' } 
+    },
+    { 
+      id: id(), type: 'text', 
+      content: 'Team\n$36 USD\n/month per person (Min 3 people)\n\nBring your team over with all Pro access and enhanced collaboration.\n\n✓ 3 users included\n✓ Each user with Pro features\n✓ Team workspace\n✓ Branded sharing', 
+      styles: { flex: '1', padding: '32px', border: '1px solid #e5e7eb', borderRadius: '24px', backgroundColor: '#f9fafb', fontSize: '14px', lineHeight: '1.6', textAlign: 'left' } 
+    },
+  ]},
   { name: '모던 프리미엄 요금제', preview: '💎', bg: { type: 'color', value: '#f1f5f9' }, elements: [
     { id: id(), type: 'text', content: '서비스 요금 안내', styles: { fontSize: '32px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 40px' } },
     // 베이직 플랜 카드

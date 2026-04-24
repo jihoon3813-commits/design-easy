@@ -34,8 +34,8 @@ export default function SectionRenderer({ section }: Props) {
         />
       )}
 
-      <div className="relative z-10 w-full px-6 mx-auto" style={{ maxWidth: section.styles?.maxWidth || '100%' }}>
-        <div className="flex flex-col">
+      <div className="relative z-10 w-full px-6 mx-auto" style={{ maxWidth: section.styles?.maxWidth || '1200px' }}>
+        <div className={`flex ${section.styles?.layout === 'grid' ? 'flex-col md:flex-row md:items-stretch gap-6' : 'flex-col'}`}>
           {section.elements?.map((element) => (
             <EditableAsset 
               key={element.id} 
