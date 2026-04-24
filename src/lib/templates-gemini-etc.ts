@@ -93,11 +93,17 @@ export const geminiComparisonTemplates: TemplateVariant[] = [
     { id: id(), type: 'text', content: '✅ 4K 고해상도 동영상 스트리밍', styles: { fontSize: '14px', padding: '10px', color: '#2563eb' } },
     { id: id(), type: 'text', content: '✅ SEO 최적화 메타데이터 자동생성', styles: { fontSize: '14px', padding: '10px', color: '#2563eb' } },
   ]},
-  { name: '가격 플랜 (퓨처)', preview: '💳', bg: { type: 'color', value: '#f8fafc' }, elements: [
-    { id: id(), type: 'text', content: '무료 체험부터 전문가 플랜까지', styles: { fontSize: '18px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 20px' } },
-    { id: id(), type: 'text', content: 'STARTER — Free', styles: { fontSize: '15px', fontWeight: 'bold', padding: '20px', backgroundColor: '#fff', borderRadius: '16px', textAlign: 'center' } },
-    { id: id(), type: 'text', content: 'PRO — $29/mo', styles: { fontSize: '15px', fontWeight: 'bold', padding: '20px', backgroundColor: '#6366f1', color: '#fff', borderRadius: '16px', textAlign: 'center', margin: '12px 0' } },
-    { id: id(), type: 'text', content: 'ENTERPRISE', styles: { fontSize: '15px', fontWeight: 'bold', padding: '20px', backgroundColor: '#fff', borderRadius: '16px', textAlign: 'center' } },
+  { name: '모던 프리미엄 요금제', preview: '💎', bg: { type: 'color', value: '#f1f5f9' }, elements: [
+    { id: id(), type: 'text', content: '서비스 요금 안내', styles: { fontSize: '32px', fontWeight: 'bold', textAlign: 'center', margin: '0 0 40px' } },
+    // 베이직 플랜 카드
+    { id: id(), type: 'text', content: 'BASIC\n월 19,000원\n실속있는 기본 혜택 구성', styles: { fontSize: '16px', fontWeight: 'bold', padding: '32px', backgroundColor: '#fff', borderRadius: '24px', border: '1px solid #e2e8f0', textAlign: 'center' } },
+    { id: id(), type: 'text', content: '✔️ 핵심 서비스 3종 포함\n✔️ 연 1회 정기 검진\n✔️ 24시간 상담 지원', styles: { fontSize: '13px', color: '#64748b', padding: '0 32px 24px', backgroundColor: '#fff', textAlign: 'center' } },
+    { id: id(), type: 'button', content: '시작하기', styles: { backgroundColor: '#f1f5f9', color: '#1e293b', padding: '12px', borderRadius: '12px', fontWeight: 'bold', width: '80%', margin: '0 auto 32px', textAlign: 'center' } },
+    { id: id(), type: 'spacer', content: '20px', styles: {} },
+    // 추천 플랜 카드 (하이라이트)
+    { id: id(), type: 'text', content: 'PREMIUM (추천)\n월 29,000원\n대다수가 선택하는 베스트 플랜', styles: { fontSize: '16px', fontWeight: 'bold', color: '#4f46e5', padding: '32px', backgroundColor: '#eef2ff', borderRadius: '24px 24px 0 0', border: '2px solid #4f46e5', borderBottom: 'none', textAlign: 'center' } },
+    { id: id(), type: 'text', content: '✅ 모든 기본 혜택 포함\n✅ 전담 매니저 배정\n✅ 우선 상담 서비스 제공\n✅ 프리미엄 키트 증정', styles: { fontSize: '13px', color: '#4338ca', padding: '0 32px 24px', backgroundColor: '#eef2ff', borderLeft: '2px solid #4f46e5', borderRight: '2px solid #4f46e5', textAlign: 'center' } },
+    { id: id(), type: 'button', content: '지금 상담받기', styles: { backgroundColor: '#4f46e5', color: '#fff', padding: '16px', borderRadius: '0 0 24px 24px', fontWeight: 'bold', border: '2px solid #4f46e5', borderTop: 'none', textAlign: 'center' } },
   ]},
   { name: '스펙 대결', preview: '⚔️', bg: { type: 'color', value: '#000' }, elements: [
     { id: id(), type: 'text', content: '압도적인 스펙 차이', styles: { fontSize: '22px', fontWeight: 'bold', color: '#fff', textAlign: 'center', margin: '0 0 24px' } },
