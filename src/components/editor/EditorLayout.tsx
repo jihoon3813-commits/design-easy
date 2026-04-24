@@ -1,18 +1,23 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
 import PropertyPanel from './PropertyPanel';
 import { useEditorStore } from '@/store/useEditorStore';
 import { 
   Monitor, Smartphone, Save, FolderOpen, Download, 
-  RotateCcw, RotateCw, X, Trash2, Clock 
+  RotateCcw, RotateCw, X, Trash2, Clock, ArrowLeft 
 } from 'lucide-react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import Link from 'next/link';
 
-export default function EditorLayout() {
+interface EditorLayoutProps {
+  projectId?: string;
+}
+
+export default function EditorLayout({ projectId }: EditorLayoutProps) {
   const { 
     previewMode, setPreviewMode, 
     undo, redo, canUndo, canRedo,
@@ -21,7 +26,13 @@ export default function EditorLayout() {
 
   // Convex Hooks
   const savedProjects = useQuery(api.projects.getProjects) || [];
+  // Get specific project if projectId is provided
+  const currentProject = useQuery(
+    api.projects.getProjects
+  )?.find(p => p._id === projectId);
+
   const saveProjectMutation = useMutation(api.projects.saveProject);
+  const updateProjectMutation = useMutation(api.projects.updateProject);
   const deleteProjectMutation = useMutation(api.projects.deleteProject);
 
   const [showSaveModal, setShowSaveModal] = useState(false);
@@ -29,11 +40,32 @@ export default function EditorLayout() {
   const [projectName, setProjectName] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   
+  // Load project data when projectId changes
+  useEffect(() => {
+    if (currentProject) {
+      setPageData(JSON.parse(JSON.stringify(currentProject.data)));
+      setProjectName(currentProject.name);
+    }
+  }, [currentProject, setPageData]);
+
   const handleSave = async () => {
-    const name = projectName || `새 프로젝트 ${new Date().toLocaleTimeString()}`;
-    await saveProjectMutation({ name, data: pageData });
+    const name = projectName || (currentProject?.name) || `새 프로젝트 ${new Date().toLocaleTimeString()}`;
+    
+    if (projectId) {
+      // Update existing
+      await updateProjectMutation({ 
+        id: projectId as any, 
+        name, 
+        data: pageData 
+      });
+    } else {
+      // Save as new
+      await saveProjectMutation({ name, data: pageData });
+    }
+    
     setProjectName('');
     setShowSaveModal(false);
+    alert('저장되었습니다.');
   };
 
   const handleLoad = (data: any) => {
@@ -63,7 +95,7 @@ export default function EditorLayout() {
       });
       
       const link = document.createElement('a');
-      link.download = `landing-page-${previewMode}-${Date.now()}.png`;
+      link.download = `${projectName || 'landing-page'}-${previewMode}-${Date.now()}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -79,11 +111,19 @@ export default function EditorLayout() {
       {/* Top Navigation */}
       <header className="h-14 border-b border-neutral-800 flex items-center justify-between px-4 bg-neutral-950 z-50">
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="font-black text-lg">G</span>
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard" className="p-2 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-all">
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="font-black text-lg">G</span>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="font-bold text-xs tracking-tighter text-white">GEMINI BUILDER</h1>
+                {currentProject && <span className="text-[10px] text-neutral-500 font-medium truncate max-w-[150px]">{currentProject.name}</span>}
+              </div>
             </div>
-            <h1 className="font-bold text-sm tracking-tighter">GEMINI BUILDER</h1>
           </div>
           
           <div className="h-4 w-px bg-neutral-800" />
@@ -119,11 +159,11 @@ export default function EditorLayout() {
           </button>
           
           <button 
-            onClick={() => setShowSaveModal(true)}
+            onClick={projectId ? handleSave : () => setShowSaveModal(true)}
             className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 rounded-lg text-xs font-bold transition-all"
           >
             <Save className="w-4 h-4 text-blue-500" />
-            저장하기
+            {projectId ? '업데이트' : '저장하기'}
           </button>
 
           <button 
