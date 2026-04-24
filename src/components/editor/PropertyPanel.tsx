@@ -215,13 +215,13 @@ export default function PropertyPanel() {
               <label className="text-[10px] font-bold text-neutral-500 uppercase block tracking-wider">섹션 배경</label>
               <div className="flex gap-1 p-1 bg-neutral-900 rounded-lg border border-neutral-800">
                 <button 
-                  onClick={() => updateSection(selectedSectionId, { background: { ...selectedSection.background, type: 'color' } })}
+                  onClick={() => updateSection(selectedSectionId, { background: { ...(selectedSection.background || { type: 'color', value: '#ffffff' }), type: 'color' } })}
                   className={`flex-1 py-1.5 text-[10px] rounded transition-all ${selectedSection.background?.type === 'color' ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'}`}
                 >
                   색상
                 </button>
                 <button 
-                  onClick={() => updateSection(selectedSectionId, { background: { ...selectedSection.background, type: 'image' } })}
+                  onClick={() => updateSection(selectedSectionId, { background: { ...(selectedSection.background || { type: 'color', value: '#ffffff' }), type: 'image' } })}
                   className={`flex-1 py-1.5 text-[10px] rounded transition-all ${selectedSection.background?.type === 'image' ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'}`}
                 >
                   이미지
@@ -229,8 +229,8 @@ export default function PropertyPanel() {
               </div>
               <input 
                 type={selectedSection.background?.type === 'color' ? 'color' : 'text'}
-                value={selectedSection.background.value}
-                onChange={(e) => updateSection(selectedSectionId, { background: { ...selectedSection.background, value: e.target.value } })}
+                value={selectedSection.background?.value || ''}
+                onChange={(e) => updateSection(selectedSectionId, { background: { ...(selectedSection.background || { type: 'color', value: '#ffffff' }), value: e.target.value } })}
                 className="w-full bg-neutral-900 border border-neutral-800 rounded-lg p-2.5 text-xs text-white outline-none"
               />
             </div>
